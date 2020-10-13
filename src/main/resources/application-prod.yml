@@ -1,0 +1,74 @@
+server:
+  port: 80
+  use-forward-headers: true
+  undertow:
+    io-threads: 2
+    worker-threads: 32
+    buffer-size: 1024
+    directBuffers: true
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+spring:
+  thymeleaf:
+    cache: false
+  mvc:
+    date-format: yyyy-MM-dd
+#    static-path-pattern: /images/**
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://175.24.120.68:3306/blog?useUnicode=true&serverTimezone=UTC&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+
+
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+#  resources:
+#    static-locations: file:${file-save-path}
+
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.lee.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+comment.avatar: /image/1.jpg
+
+logging:
+  level:
+    root: info
+    com.lee: debug
+  file:
+    name: log/blog.log
+
+file-save-path: /data/
+

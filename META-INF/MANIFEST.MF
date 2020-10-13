@@ -1,0 +1,46 @@
+Manifest-Version: 1.0
+Main-Class: com.lee.BlogApplication
+Class-Path: spring-boot-starter-tomcat-2.2.2.RELEASE.jar spring-jcl-5.2.
+ 2.RELEASE.jar mybatis-spring-boot-autoconfigure-2.1.1.jar shiro-cache-1
+ .4.1.jar commons-collections-3.2.2.jar jackson-module-parameter-names-2
+ .10.1.jar mybatis-spring-boot-starter-2.1.1.jar spring-tx-5.2.2.RELEASE
+ .jar spring-boot-starter-jdbc-2.2.2.RELEASE.jar pagehelper-spring-boot-
+ starter-1.2.3.jar shiro-config-core-1.4.1.jar spring-beans-5.2.2.RELEAS
+ E.jar jakarta.persistence-api-2.2.3.jar hibernate-core-5.4.9.Final.jar 
+ fastjson-1.2.36.jar javassist-3.24.0-GA.jar pagehelper-spring-boot-auto
+ configure-1.2.3.jar tomcat-embed-core-9.0.29.jar shiro-crypto-cipher-1.
+ 4.1.jar spring-data-commons-2.2.3.RELEASE.jar FastInfoset-1.2.16.jar sp
+ ring-core-5.2.2.RELEASE.jar tomcat-embed-el-9.0.29.jar shiro-event-1.4.
+ 1.jar spring-data-jpa-2.2.3.RELEASE.jar spring-boot-devtools-2.2.2.RELE
+ ASE.jar attoparser-2.0.5.RELEASE.jar mysql-connector-java-8.0.18.jar ja
+ karta.validation-api-2.0.1.jar spring-boot-autoconfigure-2.2.2.RELEASE.
+ jar jakarta.activation-api-1.2.1.jar spring-boot-2.2.2.RELEASE.jar antl
+ r-2.7.7.jar thymeleaf-spring5-3.0.11.RELEASE.jar hibernate-validator-6.
+ 0.18.Final.jar log4j-api-2.12.1.jar jackson-annotations-2.10.1.jar comm
+ onmark-ext-gfm-tables-0.10.0.jar logback-core-1.2.3.jar spring-boot-sta
+ rter-aop-2.2.2.RELEASE.jar spring-boot-starter-web-2.2.2.RELEASE.jar co
+ mmonmark-ext-heading-anchor-0.10.0.jar spring-boot-starter-logging-2.2.
+ 2.RELEASE.jar spring-context-5.2.2.RELEASE.jar commonmark-0.10.0.jar sp
+ ring-expression-5.2.2.RELEASE.jar druid-1.1.21.jar shiro-config-ogdl-1.
+ 4.1.jar spring-webmvc-5.2.2.RELEASE.jar spring-jdbc-5.2.2.RELEASE.jar j
+ ackson-core-2.10.1.jar dom4j-2.1.1.jar jackson-datatype-jsr310-2.10.1.j
+ ar classmate-1.5.1.jar mybatis-3.5.3.jar unbescape-1.1.6.RELEASE.jar ja
+ karta.annotation-api-1.3.5.jar txw2-2.3.2.jar jboss-logging-3.4.1.Final
+ .jar jsqlparser-1.0.jar lombok-1.18.10.jar slf4j-api-1.7.29.jar spring-
+ boot-starter-thymeleaf-2.2.2.RELEASE.jar spring-boot-starter-data-jpa-2
+ .2.1.RELEASE.jar jakarta.transaction-api-1.3.3.jar thymeleaf-3.0.11.REL
+ EASE.jar stax-ex-1.8.1.jar shiro-crypto-hash-1.4.1.jar shiro-lang-1.4.1
+ .jar commons-beanutils-1.9.3.jar log4j-1.2.17.jar thymeleaf-extras-java
+ 8time-3.0.4.RELEASE.jar istack-commons-runtime-3.0.8.jar jaxb-runtime-2
+ .3.2.jar pagehelper-5.1.2.jar spring-orm-5.2.2.RELEASE.jar mybatis-spri
+ ng-2.0.3.jar logback-classic-1.2.3.jar jandex-2.1.1.Final.jar snakeyaml
+ -1.25.jar spring-aspects-5.2.2.RELEASE.jar jackson-databind-2.10.1.jar 
+ shiro-spring-1.4.1.jar jakarta.xml.bind-api-2.3.2.jar shiro-core-1.4.1.
+ jar HikariCP-3.4.1.jar jackson-datatype-jdk8-2.10.1.jar shiro-crypto-co
+ re-1.4.1.jar spring-boot-starter-json-2.2.2.RELEASE.jar byte-buddy-1.10
+ .4.jar hibernate-commons-annotations-5.1.0.Final.jar spring-web-5.2.2.R
+ ELEASE.jar shiro-web-1.4.1.jar spring-aop-5.2.2.RELEASE.jar spring-boot
+ -starter-validation-2.2.2.RELEASE.jar log4j-to-slf4j-2.12.1.jar jul-to-
+ slf4j-1.7.29.jar spring-boot-starter-2.2.2.RELEASE.jar aspectjweaver-1.
+ 9.4.jar tomcat-embed-websocket-9.0.29.jar
+
