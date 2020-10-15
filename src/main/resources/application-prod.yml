@@ -19,7 +19,7 @@ spring:
 #    static-path-pattern: /images/**
   datasource:
     username: root
-    password: root
+    password: json@123
     url: jdbc:mysql://175.24.120.68:3306/blog?useUnicode=true&serverTimezone=UTC&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
@@ -70,5 +70,5 @@ logging:
   file:
     name: log/blog.log
 
-file-save-path: /data/
+file-save-path: /data/images/
 

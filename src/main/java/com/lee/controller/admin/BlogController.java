@@ -149,12 +149,12 @@ public class BlogController {
             String fileName = attach.getOriginalFilename();
 
             //保存文件操作
-            File dir = new File(fileSavePath + "images");
+            File dir = new File(fileSavePath);
             if (!dir.exists()) {
                 dir.mkdirs();
             }
-            log.info("图片上传，保存位置：" + fileSavePath + "images/");
-            File newFile = new File(fileSavePath + "images/" + fileName);
+            log.info("图片上传，保存位置：" + fileSavePath);
+            File newFile = new File(fileSavePath +  fileName);
             attach.transferTo(newFile);
 
             // 用于editor.md的回显
