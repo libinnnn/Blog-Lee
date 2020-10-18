@@ -2,9 +2,11 @@ package com.lee.controller.admin;
 
 import com.lee.annotation.Log;
 import com.lee.pojo.Type;
+import com.lee.pojo.User;
 import com.lee.service.TypeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +32,8 @@ public class TypeController {
         //得到分页结果对象
         PageInfo<Type> pageInfo = new PageInfo<>(allType);
         model.addAttribute("pageInfo", pageInfo);
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("userName", user.getUsername());
         return "admin/types";
     }
 
@@ -64,6 +68,8 @@ public class TypeController {
         Type type = typeService.getType(id);
         System.out.println(type);
         model.addAttribute("type", type);
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("userName", user.getUsername());
         return "admin/types-update";
     }
 

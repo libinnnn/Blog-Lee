@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -30,6 +31,12 @@ public class ShiroConfig {
         * perms:拥有对某个资源的权限
         * role:拥有某个角色权限才能访问
         * */
+
+//        // 添加过滤器
+//        LinkedHashMap<String, Filter> filters = new LinkedHashMap<>();
+//        filters.put("jwt", new JWTFilter());
+//
+//        bean.setFilters(filters);
 
         //拦截
         Map<String, String> filterMap = new LinkedHashMap<>();

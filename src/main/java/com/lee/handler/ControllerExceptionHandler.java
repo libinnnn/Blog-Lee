@@ -26,9 +26,10 @@ public class ControllerExceptionHandler {
 
         /*将找不到资源异常交给springboot来处理，ControllerAdvice不拦截*/
         if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class)!= null) {
+            logger.info("未进入自定义异常逻辑!");
             throw e;
         }
-
+        logger.info("进入自定义异常逻辑!");
         ModelAndView mv = new ModelAndView();
         mv.addObject("url:", request.getRequestURL());
         mv.addObject("exception", e);

@@ -2,9 +2,11 @@ package com.lee.controller.admin;
 
 import com.lee.annotation.Log;
 import com.lee.pojo.Tag;
+import com.lee.pojo.User;
 import com.lee.service.TagService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,8 @@ public class TagController {
         List<Tag> allTag = tagService.getAdminTag();
         PageInfo<Tag> pageInfo = new PageInfo<>(allTag);
         model.addAttribute("pageInfo", pageInfo);
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("userName", user.getUsername());
         return "admin/tags";
     }
 

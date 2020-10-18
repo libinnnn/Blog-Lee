@@ -14,6 +14,7 @@ import com.lee.service.TypeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -60,6 +61,8 @@ public class BlogController {
         PageInfo<BlogQuery> pageInfo = new PageInfo<>(allBlog);
         model.addAttribute("pageInfo", pageInfo);
         setTypeAndTag(model);
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("userName", user.getUsername());
         return "admin/blogs";
     }
 
@@ -78,6 +81,8 @@ public class BlogController {
     @GetMapping("/blogs/input")
     public String toAdd(Model model) {
         setTypeAndTag(model);
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("userName", user.getUsername());
         return "admin/blogs-input";
     }
 
@@ -112,6 +117,8 @@ public class BlogController {
         model.addAttribute("pageInfo", pageInfo);
         setTypeAndTag(model);
         model.addAttribute("message", "查询成功");
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("userName", user.getUsername());
         return "admin/blogs";
     }
 
@@ -125,6 +132,8 @@ public class BlogController {
         model.addAttribute("blog", blogById);
         model.addAttribute("types", allType);
         model.addAttribute("tags", allTag);
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("userName", user.getUsername());
         return "admin/blogs-update";
     }
 
