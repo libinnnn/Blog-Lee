@@ -9,9 +9,9 @@ public interface BlogService {
 
     ShowBlog getBlogById(Long id);
 
-    List<BlogQuery> getAllBlog();
+    List<BlogQuery> getAllBlog() throws Exception;
 
-    int saveBlog(Blog blog);
+    int saveBlog(Blog blog) throws Exception;
 
     int updateBlog(ShowBlog showBlog);
 

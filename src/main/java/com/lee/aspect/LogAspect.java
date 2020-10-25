@@ -18,9 +18,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
-//被spring托管
 @Component
-//aop切面
 @Aspect
 public class LogAspect {
 

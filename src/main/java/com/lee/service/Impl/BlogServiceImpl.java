@@ -6,7 +6,9 @@ import com.lee.exception.NotFountException;
 import com.lee.pojo.Blog;
 import com.lee.pojo.Tag;
 import com.lee.service.BlogService;
+import com.lee.service.CacheService;
 import com.lee.util.MarkdownUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +17,13 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@Slf4j
 public class BlogServiceImpl implements BlogService {
 
     @Autowired
     private BlogDao blogDao;
+    @Autowired
+    private CacheService cacheService;
 
     @Override
     public ShowBlog getBlogById(Long id) {
@@ -26,13 +31,19 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<BlogQuery> getAllBlog() {
-        List<BlogQuery> allBlogQuery = blogDao.getAllBlogQuery();
+    public List<BlogQuery> getAllBlog() throws Exception {
+        List<BlogQuery> allBlogQuery = cacheService.getAllBlog();
+//        log.info("allBlogQuery:{}",allBlogQuery.toString());
+        if(allBlogQuery == null){
+            cacheService.updateAllBlog();
+            allBlogQuery = blogDao.getAllBlogQuery();
+            log.info("未命中缓存！！！");
+        }
         return allBlogQuery;
     }
 
     @Override
-    public int saveBlog(Blog blog) {
+    public int saveBlog(Blog blog) throws Exception {
         blog.setCreateTime(new Date());
         blog.setUpdateTime(new Date());
         blog.setViews(0);
@@ -43,6 +54,8 @@ public class BlogServiceImpl implements BlogService {
             blogAndTag = new BlogAndTag(tag.getId(),blog.getId());
             blogDao.saveBlogAndTag(blogAndTag);
         }
+        //删除缓存
+        cacheService.deleteAllBlog();
         return blogDao.saveBlog(blog);
     }
 

@@ -55,7 +55,7 @@ public class BlogController {
     //显示
     @Log("显示")
     @GetMapping("/blogs")
-    public String list(Model model, @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum) {
+    public String list(Model model, @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum) throws Exception {
         PageHelper.startPage(pageNum, 3);
         List<BlogQuery> allBlog = blogService.getAllBlog();
         PageInfo<BlogQuery> pageInfo = new PageInfo<>(allBlog);
@@ -89,7 +89,7 @@ public class BlogController {
     //新增
     @Log("新增博客")
     @PostMapping("/blogs")
-    public String add(Blog blog, RedirectAttributes attributes, HttpSession session) {
+    public String add(Blog blog, RedirectAttributes attributes, HttpSession session) throws Exception {
         blog.setUser((User) session.getAttribute("user"));
         //设置blog的type
         blog.setType(typeService.getType(blog.getType().getId()));
