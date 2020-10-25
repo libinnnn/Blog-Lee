@@ -1,5 +1,6 @@
 package com.lee.controller.admin;
 
+import com.lee.annotation.Limit;
 import com.lee.annotation.Log;
 import com.lee.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,7 @@ public class LoginController {
 
     @Log("登录")
     @RequestMapping("/login")
+    @Limit(key = "login", period = 60, count = 20, name = "登录接口", prefix = "limit")
     public String login(Model model,
                         @RequestParam String username,
                         @RequestParam String password,
