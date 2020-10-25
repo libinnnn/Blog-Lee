@@ -20,6 +20,7 @@
 |  ----  | 
 | springboot  | 
 | mybatics  | 
+| redis  | 
 | Semantic Ui  | 
 | thymeleaf模板引擎  | 
 | shiro  | 
