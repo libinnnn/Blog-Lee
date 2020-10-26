@@ -42,18 +42,12 @@ public class IndexController {
 
     @Log("显示主页面")
     @GetMapping("/")
-    public String index(Model model, @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum) {
+    public String index(Model model, @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum) throws Exception {
         PageHelper.startPage(pageNum, 6);
         List<FirstPageBlog> allFirstPageBlog = blogService.getAllFirstPageBlog();
-        /*System.out.println("num:"+allFirstPageBlog.size());
-        for (FirstPageBlog firstPageBlog : allFirstPageBlog) {
-            System.out.println(firstPageBlog);
-        }*/
+
         List<Type> allType = typeService.getAllType();
-        /*System.out.println("num:" + allType.size());
-        for (Type type : allType) {
-            System.out.println(type);
-        }*/
+
         List<Tag> allTag = tagService.getAllTag();
         List<RecommendBlog> recommendedBlog = blogService.getRecommendedBlog();
         PageInfo<FirstPageBlog> pageInfo = new PageInfo<>(allFirstPageBlog);

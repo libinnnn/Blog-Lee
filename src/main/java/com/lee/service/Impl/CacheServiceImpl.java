@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lee.dao.BlogDao;
 import com.lee.domain.BlogConstant;
 import com.lee.dto.BlogQuery;
+import com.lee.dto.FirstPageBlog;
 import com.lee.exception.RedisConnectException;
 import com.lee.pojo.Blog;
 import com.lee.service.CacheService;
@@ -32,7 +33,7 @@ public class CacheServiceImpl implements CacheService {
     @Override
     public int updateAllBlog() throws Exception {
         List<BlogQuery> allBlogQuery = blogDao.getAllBlogQuery();
-        redisService.set(BlogConstant.BLOG_CACHE_PREFIX,mapper.writeValueAsString(allBlogQuery));
+        redisService.set(BlogConstant.BLOG_CACHE_PREFIX,mapper.writeValueAsString(allBlogQuery), 60000L);
         return 0;
     }
 
@@ -51,5 +52,28 @@ public class CacheServiceImpl implements CacheService {
     @Override
     public void deleteAllBlog() throws RedisConnectException {
         redisService.del(BlogConstant.BLOG_CACHE_PREFIX);
+    }
+
+    @Override
+    public List<FirstPageBlog> getAllFirstPageBlog() throws Exception {
+        String firstPageBlogList = redisService.get(BlogConstant.BLOG_INDEX_CACHE_PREFIX);
+        if (StringUtils.isBlank(firstPageBlogList)){
+            return null;
+        }else{
+            //反序列化
+            JavaType type = mapper.getTypeFactory().constructParametricType(List.class, FirstPageBlog.class);
+            return this.mapper.readValue(firstPageBlogList, type);
+        }
+    }
+
+    @Override
+    public void deleteAllFirstPageBlog() throws RedisConnectException {
+        redisService.del(BlogConstant.BLOG_INDEX_CACHE_PREFIX);
+    }
+
+    @Override
+    public void updateAllFirstPageBlog() throws Exception {
+        List<FirstPageBlog> allFirstPageBlog = blogDao.getFirstPageBlog();
+        redisService.set(BlogConstant.BLOG_INDEX_CACHE_PREFIX,mapper.writeValueAsString(allFirstPageBlog),60000L);
     }
 }

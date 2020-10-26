@@ -3,6 +3,7 @@ package com.lee.service.Impl;
 import com.lee.dao.BlogDao;
 import com.lee.dto.*;
 import com.lee.exception.NotFountException;
+import com.lee.exception.RedisConnectException;
 import com.lee.pojo.Blog;
 import com.lee.pojo.Tag;
 import com.lee.service.BlogService;
@@ -37,7 +38,7 @@ public class BlogServiceImpl implements BlogService {
         if(allBlogQuery == null){
             cacheService.updateAllBlog();
             allBlogQuery = blogDao.getAllBlogQuery();
-            log.info("未命中缓存！！！");
+            log.info("AllBlog 未命中缓存！！！");
         }
         return allBlogQuery;
     }
@@ -56,19 +57,26 @@ public class BlogServiceImpl implements BlogService {
         }
         //删除缓存
         cacheService.deleteAllBlog();
+        cacheService.deleteAllBlog();
         return blogDao.saveBlog(blog);
     }
 
     @Override
-    public int updateBlog(ShowBlog showBlog) {
+    public int updateBlog(ShowBlog showBlog) throws RedisConnectException {
         showBlog.setUpdateTime(new Date());
+        //删除缓存
+        cacheService.deleteAllBlog();
+        cacheService.deleteAllBlog();
         return blogDao.updateBlog(showBlog);
     }
 
     @Override
-    public int deleteBlog(Long id) {
+    public int deleteBlog(Long id) throws RedisConnectException {
         blogDao.deleteBlogAndTag(id);
         blogDao.deleteBlog(id);
+        //删除缓存
+        cacheService.deleteAllBlog();
+        cacheService.deleteAllBlog();
         return 1;
     }
 
@@ -85,7 +93,13 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<FirstPageBlog> getAllFirstPageBlog() {
+    public List<FirstPageBlog> getAllFirstPageBlog() throws Exception {
+        List<FirstPageBlog> firstPageBlogList = cacheService.getAllFirstPageBlog();
+        if(firstPageBlogList == null){
+            firstPageBlogList = blogDao.getFirstPageBlog();
+            cacheService.updateAllFirstPageBlog();
+            log.info("AllFirstPageBlog 未命中缓存");
+        }
         return blogDao.getFirstPageBlog();
     }
 

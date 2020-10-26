@@ -1,6 +1,9 @@
 package com.lee.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lee.dto.BlogQuery;
+import com.lee.dto.FirstPageBlog;
+import com.lee.dto.RecommendBlog;
 import com.lee.exception.RedisConnectException;
 import com.lee.pojo.Blog;
 
@@ -16,5 +19,11 @@ public interface CacheService {
     List<BlogQuery> getAllBlog() throws Exception;
 
     void deleteAllBlog() throws RedisConnectException;
+
+    List<FirstPageBlog> getAllFirstPageBlog() throws Exception;
+
+    void deleteAllFirstPageBlog() throws RedisConnectException;
+
+    void updateAllFirstPageBlog() throws Exception;
 
 }

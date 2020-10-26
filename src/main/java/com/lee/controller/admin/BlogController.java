@@ -4,6 +4,7 @@ import com.lee.annotation.Log;
 import com.lee.dto.BlogQuery;
 import com.lee.dto.SearchBlog;
 import com.lee.dto.ShowBlog;
+import com.lee.exception.RedisConnectException;
 import com.lee.pojo.Blog;
 import com.lee.pojo.Tag;
 import com.lee.pojo.Type;
@@ -70,7 +71,7 @@ public class BlogController {
     //删除
     @Log("删除")
     @GetMapping("/blogs/{id}/delete")
-    public String delete(@PathVariable Long id,RedirectAttributes attributes) {
+    public String delete(@PathVariable Long id,RedirectAttributes attributes) throws RedisConnectException {
         blogService.deleteBlog(id);
         attributes.addFlashAttribute("message", "删除成功");
         return "redirect:/admin/blogs";
@@ -139,7 +140,7 @@ public class BlogController {
 
     @Log("更新")
     @PostMapping("/blogs/update")
-    public String editPost(ShowBlog showBlog,RedirectAttributes attributes) {
+    public String editPost(ShowBlog showBlog,RedirectAttributes attributes) throws RedisConnectException {
         blogService.updateBlog(showBlog);
         attributes.addFlashAttribute("message", "修改成功");
         return "redirect:/admin/blogs";
